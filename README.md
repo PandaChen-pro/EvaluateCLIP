@@ -30,6 +30,15 @@ python test.py
 
 rSum: 293.40
 
+复现结果（ViT-L/14）：
+|  | Text Retrieval (Zero-Shot CLIP on Flickr30k) | Image Retrieval (Zero-Shot CLIP on Flickr30k) |
+|:-------:|:--------:|:-------:|
+| R@1  |   21.67%  |   40.58%|
+| R@5  |   41.58%  |   64.78%|
+| R@10  |   51.09%  |   73.69%|
+
+rSum: 293.40
+
 ## MSCOCO数据集
 文章中的结果如下(Table 13)：
 |  | Text Retrieval (Zero-Shot CLIP on Flickr30k) | Image Retrieval (Zero-Shot CLIP on Flickr30k) |
