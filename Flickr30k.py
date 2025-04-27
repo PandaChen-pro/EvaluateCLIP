@@ -5,20 +5,18 @@ import os
 import numpy as np
 from tqdm import tqdm
 from datasets import load_dataset
-import os # 已经导入过一次了
+import os 
+import time
 
-# 设置代理 (如果需要的话)
 os.environ['http_proxy'] = 'http://172.17.0.2:7890'
 os.environ['https_proxy'] = 'http://172.17.0.2:7890'
 
-# 添加特征保存路径
+
 FEATURES_DIR = "./saved_features"
 os.makedirs(FEATURES_DIR, exist_ok=True)
 
-# 设置设备和模型
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
-model_name = 'ViT-B/32' # 或 ViT-L/14 等
-# 考虑显存，ViT-B/32 应该比较合适
+model_name = 'ViT-L/14' 
 model, preprocess = clip.load(model_name, device=device)
 model.eval()
 print(f'Model {model_name} loaded on {device}')
@@ -46,7 +44,6 @@ def load_features():
         return features_dict
     return None
 
-# 尝试加载已保存的特征
 features_dict = load_features()
 
 if features_dict is None:
@@ -117,10 +114,11 @@ if features_dict is None:
             image_id_to_text_indices[image_id] = []
 
         for caption in captions:
-            all_texts.append(caption)
+            prompted_caption = f"a photo of {caption}" # 添加提示
+            all_texts.append(prompted_caption)
             text_to_image_mapping.append(image_feature_idx) # Record image index for this text
             image_id_to_text_indices[image_id].append(current_text_idx) # Record text index for this image_id
-            current_batch_texts.append(caption)
+            current_batch_texts.append(prompted_caption)
             current_text_idx += 1
 
             # Process text batch when full
@@ -203,7 +201,7 @@ print(f"Initialized similarity matrix shape: {similarity_matrix.shape} on CPU")
 # + result batch (batch*1000*4) + intermediate workspace on GPU.
 # Let's try text_batch_size_sim = 1000? 1000*1000*4 bytes = 4MB result batch.
 # Try text batch sizes that make the result batch plus inputs fit.
-text_batch_size_sim = 256 # Example batch size for text in similarity calculation
+text_batch_size_sim = 512 # Example batch size for text in similarity calculation
 
 print("Calculating similarity matrix in batches...")
 
@@ -328,3 +326,13 @@ for k in K_values_to_compute:
 
 rSum = sum(recall_results['T2I_Recall'].values()) + sum(recall_results['I2T_Recall'].values())
 print(f"rSum: {rSum:.2f}")
+
+# 保存结果
+with open('flickr30k_recall_results.txt', 'w') as f:
+    f.write('time: ' + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + '\n')
+    f.write(f"Dataset: Flickr30k\n")
+    f.write(f"Model: {model_name}\n")
+    f.write(f"rSum: {rSum:.2f}\n")
+    for k in K_values_to_compute:
+        f.write(f"T2I R@{k}: {recall_results['T2I_Recall'][k]:.2f}%\n")
+        f.write(f"I2T R@{k}: {recall_results['I2T_Recall'][k]:.2f}%\n")
