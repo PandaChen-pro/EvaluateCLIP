@@ -16,7 +16,8 @@ FEATURES_DIR = "./saved_features"
 os.makedirs(FEATURES_DIR, exist_ok=True)
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
-model_name = 'ViT-L/14@336px' 
+# 三个模型 ViT-L/14@336px, ViT-L/14, ViT-B/32
+model_name = 'ViT-L/14' 
 model, preprocess = clip.load(model_name, device=device)
 model.eval()
 print(f'Model {model_name} loaded on {device}')
@@ -328,11 +329,24 @@ rSum = sum(recall_results['T2I_Recall'].values()) + sum(recall_results['I2T_Reca
 print(f"rSum: {rSum:.2f}")
 
 # 保存结果
-with open(f'flickr30k_recall_results_{model_name.replace("/", "_")}.txt', 'w') as f:
+with open(f'./results/flickr30k_recall_results_{model_name.replace("/", "_")}.txt', 'w') as f:
     f.write('time: ' + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + '\n')
     f.write(f"Dataset: Flickr30k\n")
     f.write(f"Model: {model_name}\n")
-    f.write(f"rSum: {rSum:.2f}\n")
+    # f.write(f"rSum: {rSum:.2f}\n")
+    """
+    复现结果（ViT-L/14@336px）：
+    |  | Text Retrieval (Zero-Shot CLIP on Flickr30k) | Image Retrieval (Zero-Shot CLIP on Flickr30k) |
+    |:-------:|:--------:|:-------:|
+    | R@1  |   87.20%  |   67.34%|
+    | R@5  |   98.90%  |   89.18%|
+    | R@10  |   99.60%  |   93.58%|
+
+    rSum: 535.80
+    """
+    f.write(f"复现结果（{model_name}）：\n")
+    f.write("|  | Text Retrieval (Zero-Shot CLIP on Flickr30k) | Image Retrieval (Zero-Shot CLIP on Flickr30k) |\n")
+    f.write("|:-------:|:--------:|:-------:|\n")
     for k in K_values_to_compute:
-        f.write(f"T2I R@{k}: {recall_results['T2I_Recall'][k]:.2f}%\n")
-        f.write(f"I2T R@{k}: {recall_results['I2T_Recall'][k]:.2f}%\n")
+        f.write(f"| R@{k}  |  {recall_results['I2T_Recall'][k]:.2f}%  |   {recall_results['T2I_Recall'][k]:.2f}%   |\n")
+    f.write(f"rSum: {rSum:.2f}\n")

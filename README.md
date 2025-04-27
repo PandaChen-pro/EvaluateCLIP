@@ -14,6 +14,8 @@ pip install git+https://github.com/openai/CLIP.git
 python test.py
 ```
 ## Flickr30k
+2G显存足矣
+
 本次测试使用的Flickr30k测试数据集为：https://huggingface.co/datasets/royokong/flickr30k_test
 
 文章中的结果如下(Table 13)：
@@ -26,29 +28,29 @@ python test.py
 复现结果（ViT-B/32）：
 |  | Text Retrieval (Zero-Shot CLIP on Flickr30k) | Image Retrieval (Zero-Shot CLIP on Flickr30k) |
 |:-------:|:--------:|:-------:|
-| R@1  |   21.67%  |   40.58%|
-| R@5  |   41.58%  |   64.78%|
-| R@10  |   51.09%  |   73.69%|
+| R@1  |  81.20%  |   59.38%   |
+| R@5  |  95.80%  |   83.62%   |
+| R@10  |  98.80%  |   90.10%   |
 
-rSum: 293.40
+rSum: 508.90
 
 复现结果（ViT-L/14）：
 |  | Text Retrieval (Zero-Shot CLIP on Flickr30k) | Image Retrieval (Zero-Shot CLIP on Flickr30k) |
 |:-------:|:--------:|:-------:|
-| R@1  |   64.8%  |   86.40%|
-| R@5  |   87.6%  |   97.7%|
-| R@10  |   92.52%  |   99.20%|
+| R@1  |   86.40%  |   64.8%|
+| R@5  |   97.7%  |   87.6%|
+| R@10  |   99.20%  |   92.52%|
 
 rSum: 528.22
 
-复现结果（ViT-L/14）：
+复现结果（ViT-L/14@336px）：
 |  | Text Retrieval (Zero-Shot CLIP on Flickr30k) | Image Retrieval (Zero-Shot CLIP on Flickr30k) |
 |:-------:|:--------:|:-------:|
-| R@1  |   21.67%  |   40.58%|
-| R@5  |   41.58%  |   64.78%|
-| R@10  |   51.09%  |   73.69%|
+| R@1  |   87.20%  |   67.34%|
+| R@5  |   98.90%  |   89.18%|
+| R@10  |   99.60%  |   93.58%|
 
-rSum: 293.40
+rSum: 535.80
 
 ## MSCOCO数据集
 文章中的结果如下(Table 13)：

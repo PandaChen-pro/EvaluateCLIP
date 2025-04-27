@@ -1,0 +1,10 @@
+time: 2025-04-27 11:01:23
+Dataset: Flickr30k
+Model: ViT-L/14@336px
+复现结果（ViT-L/14@336px）：
+|  | Text Retrieval (Zero-Shot CLIP on Flickr30k) | Image Retrieval (Zero-Shot CLIP on Flickr30k) |
+|:-------:|:--------:|:-------:|
+| R@1  |  87.20%  |   67.34%   |
+| R@5  |  98.90%  |   89.18%   |
+| R@10  |  99.60%  |   93.58%   |
+rSum: 535.80
