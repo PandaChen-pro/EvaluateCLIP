@@ -16,7 +16,7 @@ FEATURES_DIR = "./saved_features"
 os.makedirs(FEATURES_DIR, exist_ok=True)
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
-model_name = 'ViT-L/14' 
+model_name = 'ViT-L/14@336px' 
 model, preprocess = clip.load(model_name, device=device)
 model.eval()
 print(f'Model {model_name} loaded on {device}')
@@ -51,7 +51,7 @@ if features_dict is None:
     print("Loading Flickr30k dataset from Hugging Face...")
     try:
         # 增加 cache_dir 参数
-        hf_dataset = load_dataset("nlphuji/flickr30k", split="test", trust_remote_code=True, cache_dir="./hf_cache")
+        hf_dataset = load_dataset("royokong/flickr30k_test", split="test", trust_remote_code=True, cache_dir="./hf_cache")
         print("Dataset loaded successfully.")
         print(f"Test set size: {len(hf_dataset)}")
         print("Dataset features:", hf_dataset.features)
@@ -107,7 +107,7 @@ if features_dict is None:
         if image_id not in image_id_to_feature_idx:
             continue # Skip texts for images that failed
 
-        captions = item['caption']
+        captions = item['text']
         image_feature_idx = image_id_to_feature_idx[image_id]
 
         if image_id not in image_id_to_text_indices:
@@ -328,7 +328,7 @@ rSum = sum(recall_results['T2I_Recall'].values()) + sum(recall_results['I2T_Reca
 print(f"rSum: {rSum:.2f}")
 
 # 保存结果
-with open('flickr30k_recall_results.txt', 'w') as f:
+with open(f'flickr30k_recall_results_{model_name.replace("/", "_")}.txt', 'w') as f:
     f.write('time: ' + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + '\n')
     f.write(f"Dataset: Flickr30k\n")
     f.write(f"Model: {model_name}\n")
