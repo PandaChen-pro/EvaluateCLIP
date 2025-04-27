@@ -1,4 +1,4 @@
-# 作业三——CLIP模型
+# 复现CLIP模型在Flickr30k、MSCOCO以及Zero-shot 猫狗分类的结果
 ## 安装环境(需自行配置shell crash)
 ```shell
 git clone https://github.com/openai/CLIP.git
