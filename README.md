@@ -1,4 +1,5 @@
 # 复现CLIP模型在Flickr30k、MSCOCO以及Zero-shot 猫狗分类的结果
+
 ## 安装环境(需自行配置shell crash)
 ```shell
 git clone https://github.com/openai/CLIP.git
@@ -12,3 +13,32 @@ pip install git+https://github.com/openai/CLIP.git
 ```shell
 python test.py
 ```
+## Flickr30k
+文章中的结果如下(Table 13)：
+|  | Text Retrieval (Zero-Shot CLIP on Flickr30k) | Image Retrieval (Zero-Shot CLIP on Flickr30k) |
+|:-------:|:--------:|:-------:|
+| R@1  |   88.0%  |   68.7%|
+| R@5  |   98.7%  |   90.6%|
+| R@10  |   99.4%  |   95.2%|
+
+复现结果：
+|  | Text Retrieval (Zero-Shot CLIP on Flickr30k) | Image Retrieval (Zero-Shot CLIP on Flickr30k) |
+|:-------:|:--------:|:-------:|
+| R@1  |   58.4%  |   37.8%|
+| R@5  |   81.5%  |   62.4%|
+| R@10  |   88.1%  |   72.2%|
+
+## MSCOCO数据集
+文章中的结果如下(Table 13)：
+|  | Text Retrieval (Zero-Shot CLIP on Flickr30k) | Image Retrieval (Zero-Shot CLIP on Flickr30k) |
+|:-------:|:--------:|:-------:|
+| R@1  |   58.4%  |   37.8%|
+| R@5  |   81.5%  |   62.4%|
+| R@10  |   88.1%  |   72.2%|
+
+复现结果：
+|  | Text Retrieval (Zero-Shot CLIP on Flickr30k) | Image Retrieval (Zero-Shot CLIP on Flickr30k) |
+|:-------:|:--------:|:-------:|
+| R@1  |   58.4%  |   37.8%|
+| R@5  |   81.5%  |   62.4%|
+| R@10  |   88.1%  |   72.2%|
