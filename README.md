@@ -139,3 +139,5 @@ python CatsVsDogs_Classification.py
 |:-------:|:--------:|:-------:|
 |实际 Cat|250|0|
 |实际 Dog|1|249|
+
+分类错误的图像：results/predict_error_img_dog.1094.jpg(我也分不清是猫🐱还是狗🐶)
