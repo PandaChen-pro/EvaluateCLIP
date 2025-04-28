@@ -1,0 +1,17 @@
+time: 2025-04-28 01:51:35
+Dataset: CatsVsDogs
+Model: ViT-L/14@336px
+
+--- info ---
+  Total Images: 500
+  Correct Predictions: 499
+  Zero-Shot Accuracy: 99.80%
+--- Classification Results ---
+  Cat Accuracy: 100.00%
+  Dog Accuracy: 99.60%
+
+--- Confusion Matrix ('cat' as positive class) ---
+                预测 Cat  预测 Dog
+实际 Cat       250        0         
+实际 Dog       1          249       
+TP (真阳): 250, FN (假阴): 0, FP (假阳): 1, TN (真阴): 249

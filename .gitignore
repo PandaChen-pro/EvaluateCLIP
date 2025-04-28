@@ -2,3 +2,4 @@ flickr30k_saved_features/
 hf_cache/
 cache/
 saved_features_mscoco/
+data/

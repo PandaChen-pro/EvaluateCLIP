@@ -12,9 +12,21 @@ pip install git+https://github.com/openai/CLIP.git
 ## 测试环境是否ok
 ```shell
 python test.py
+# 应输出[[0.9927937  0.00421068 0.00299572]]
 ```
 ## Flickr30k
 2G显存足矣
+
+可修改参数：
+```python
+# 三个模型 ViT-L/14@336px, ViT-L/14, ViT-B/32
+model_name = 'ViT-L/14' 
+```
+执行命令：
+```shell
+conda activate clip
+python Flickr30k.py
+```
 
 本次测试使用的Flickr30k测试数据集为：https://huggingface.co/datasets/royokong/flickr30k_test
 
@@ -54,6 +66,17 @@ rSum: 535.80
 
 ## MSCOCO数据集
 
+可修改参数：
+```python
+# 三个模型 ViT-L/14@336px, ViT-L/14, ViT-B/32
+model_name = 'ViT-L/14' 
+```
+执行命令：
+```shell
+conda activate clip
+python MSCOCO.py
+```
+
 本次测试使用的MSCOCO测试数据集为：https://huggingface.co/datasets/nlphuji/mscoco_2014_5k_test_image_text_retrieval
 
 文章中的结果如下(Table 13)：
@@ -92,4 +115,27 @@ rSum: 392.24
 rSum: 398.61
 
 
-## 
+## Zero-Shot猫狗分类
+
+可修改参数：
+```python
+# 三个模型 ViT-L/14@336px, ViT-L/14, ViT-B/32
+model_name = 'ViT-L/14' 
+```
+执行命令：
+```shell
+conda activate clip
+python CatsVsDogs_Classification.py
+```
+
+| Metric | ViT-B/32 | ViT-L/14 | ViT-L/14@336px ｜
+|:-------:|:--------:|:-------:|:-------:|
+|正确预测数量|499|499|499|
+|猫类别准确率|99.80%|99.80%|99.80%|
+|狗类别准确率|99.80%|99.80%|99.80%|
+
+
+|  | 预测 Cat | 预测 Dog | 
+|:-------:|:--------:|:-------:|
+|实际 Cat|250|0|
+|实际 Dog|1|249|
