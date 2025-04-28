@@ -80,14 +80,14 @@ python MSCOCO.py
 本次测试使用的MSCOCO测试数据集为：https://huggingface.co/datasets/nlphuji/mscoco_2014_5k_test_image_text_retrieval
 
 文章中的结果如下(Table 13)：
-| Metric | Text Retrieval (Zero-Shot CLIP on Flickr30k) | Image Retrieval (Zero-Shot CLIP on Flickr30k) |
+| Metric | Text Retrieval (Zero-Shot CLIP on MSCOCO) | Image Retrieval (Zero-Shot CLIP on MSCOCO) |
 |:-------:|:--------:|:-------:|
 | R@1    | 58.4%                               | 37.8%                               |
 | R@5    | 81.5%                               | 62.4%                               |
 | R@10   | 88.1%                               | 72.2%                               |
 
 复现结果（ViT-B/32）：
-| Metric | Text Retrieval (Zero-Shot CLIP on Flickr30k) | Image Retrieval (Zero-Shot CLIP on Flickr30k) |
+| Metric | Text Retrieval (Zero-Shot CLIP on MSCOCO) | Image Retrieval (Zero-Shot CLIP on MSCOCO) |
 |:-------:|:--------:|:-------:|
 | R@1    | 51.62%                             | 30.68%                             |
 | R@5    | 75.92%                             | 56.11%                             |
@@ -96,7 +96,7 @@ python MSCOCO.py
 rSum: 366.07
 
 复现结果（ViT-L/14）：
-| Metric | Text Retrieval (T2I / Text -> Img) | Image Retrieval (I2T / Img -> Text) |
+| Metric | Text Retrieval (Zero-Shot CLIP on MSCOCO) | Image Retrieval (Zero-Shot CLIP on MSCOCO) |
 |:-------:|:--------:|:-------:|
 | R@1    | 57.02%                             | 36.38%                             |
 | R@5    | 79.68%                             | 60.94%                             |
@@ -106,7 +106,7 @@ rSum: 392.24
 
 
 复现结果（ViT-L/14@336px）：
-| Metric | Text Retrieval (T2I / Text -> Img) | Image Retrieval (I2T / Img -> Text) |
+| Metric | Text Retrieval (Zero-Shot CLIP on MSCOCO) | Image Retrieval (Zero-Shot CLIP on MSCOCO) |
 |:-------:|:--------:|:-------:|
 | R@1    | 59.00%                             | 36.49%                             |
 | R@5    | 82.10%                             | 61.03%                             |
